@@ -16,10 +16,9 @@ warnings.filterwarnings("ignore")
 import pdb
 
 #%% Class of StockIndexFutureBasis
-class StockIndexFutureBasis(base_):
-    def __init__(self,fini,types=None):
-        super().__init__(fini)
-        self.width = self.ini.findString('width')
+class StockIndexFutureBasis():
+    def __init__(self,types=None):
+        self.width = '12'
         if types is None: types = ['IC','IF','IH']
         self.types = types
         self.index_name_mapping = {'IC':'CSI500',
@@ -107,7 +106,7 @@ if __name__=='__main__':
         types = sys.argv[1:]
     else:
         types = None
-    bs = StockIndexFutureBasis('./stock.index.future.ini',types)
+    bs = StockIndexFutureBasis(types)
     bs.get_contracts()
     bs.get_basis()
     bs.print()
